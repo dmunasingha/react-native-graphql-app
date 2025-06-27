@@ -1,16 +1,37 @@
-# Learn more https://docs.github.com/en/get-started/getting-started-with-git/ignoring-files
+# ------------------------
+# Node Modules
+# ------------------------
+**/node_modules/
+**/package-lock.json
 
-# dependencies
-node_modules/
-
-# Expo
-.expo/
-dist/
+# ------------------------
+# Build Output
+# ------------------------
+**/dist/
 web-build/
 expo-env.d.ts
+frontend/expo-env.d.ts
+*.tsbuildinfo
+server/prisma/migrations/
 
-# Native
-.kotlin/
+# ------------------------
+# Environment
+# ------------------------
+*.env
+*.env.local
+.env*.local
+
+# ------------------------
+# Metro & Expo
+# ------------------------
+.expo/
+.metro-health-check*
+
+# ------------------------
+# Native (Android/iOS)
+# ------------------------
+android/
+ios/
 *.orig.*
 *.jks
 *.p8
@@ -18,20 +39,20 @@ expo-env.d.ts
 *.key
 *.mobileprovision
 
-# Metro
-.metro-health-check*
+# ------------------------
+# macOS & OS-Specific
+# ------------------------
+.DS_Store
+*.pem
 
-# debug
+# ------------------------
+# Logs / Debug
+# ------------------------
 npm-debug.*
 yarn-debug.*
 yarn-error.*
 
-# macOS
-.DS_Store
-*.pem
-
-# local env files
-.env*.local
-
-# typescript
+# ------------------------
+# TypeScript Cache
+# ------------------------
 *.tsbuildinfo
