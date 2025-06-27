@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
-import { View, TextInput, Button, StyleSheet } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import { gql, useMutation } from '@apollo/client';
+import customDarkTheme from '../theme';
+import { Button, TextInput } from 'react-native-paper';
 
 const ADD_TODO = gql`
   mutation AddTodo($title: String!) {
@@ -19,7 +21,7 @@ export default function AddTodo() {
     });
 
     const onSubmit = () => {
-        if (!title.trim()) return;
+        if (!title.trim()) { alert('Add title'); return; }
         addTodo({ variables: { title } });
         setTitle('');
     };
@@ -28,24 +30,28 @@ export default function AddTodo() {
         <View style={styles.container}>
             <TextInput
                 placeholder="Add new todo"
+                placeholderTextColor={theme.colors.onBackground}
                 value={title}
                 onChangeText={setTitle}
                 style={styles.input}
             />
-            <Button title="Add" onPress={onSubmit} />
+            <Button icon="plus" mode='contained-tonal' style={{ borderRadius: 5 }} onPress={onSubmit} >
+                Add
+            </Button>
         </View>
     );
 }
 
+const theme = customDarkTheme;
+
 const styles = StyleSheet.create({
-    container: { flexDirection: 'row', margin: 10 },
+    container: { flexDirection: 'row', margin: 10, marginBottom: 20 },
     input: {
         flex: 1,
-        borderWidth: 1,
-        borderColor: '#999',
         marginRight: 10,
         paddingHorizontal: 8,
         height: 40,
-        borderRadius: 4,
+        color: theme.colors.onBackground,
+        backgroundColor: theme.colors.surface,
     },
 });
